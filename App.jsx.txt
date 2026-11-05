@@ -1,0 +1,63 @@
+import React, { useState } from 'react';
+import { AdminDashboard } from './AdminDashboard';
+import { ChatBox } from './ChatBox';
+
+export default function App() {
+  const [currentView, setCurrentView] = useState('chat');
+  
+  // »Ì«‰«   Ã—Ì»Ì… „»œ∆Ì… ·«Œ »«— «·Ê«ÃÂ« 
+  const [users, setUsers] = useState([
+    { id: 1, name: '√Õ„œ ⁄·Ì', email: 'ahmed@example.com', avatar: 'https://via.placeholder.com/40', isBanned: false },
+    { id: 2, name: '”«—… „Õ„œ', email: 'sara@example.com', avatar: 'https://via.placeholder.com/40', isBanned: false }
+  ]);
+
+  const [reports, setReports] = useState([
+    { id: 1, reportedName: '”«—… „Õ„œ', reason: '”·Êﬂ €Ì— ·«∆ﬁ', reporterName: '√Õ„œ ⁄·Ì' }
+  ]);
+
+  const handleBanUser = (userId) => {
+    setUsers(users.map(u => u.id === userId ? { ...u, isBanned: !u.isBanned } : u));
+  };
+
+  const handleDeleteReport = (reportId) => {
+    setReports(reports.filter(r => r.id !== reportId));
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-100 font-sans" dir="rtl">
+      <nav className="bg-white shadow p-4 flex justify-between items-center">
+        <h1 className="font-bold text-lg text-gray-800">„‰’… «· Ê«’·</h1>
+        <div className="flex gap-2">
+          <button 
+            onClick={() => setCurrentView('chat')} 
+            className={`px-4 py-2 rounded text-sm ${currentView === 'chat' ? 'bg-pink-500 text-white' : 'bg-gray-200 text-gray-700'}`}
+          >
+            «·„Õ«œÀ…
+          </button>
+          <button 
+            onClick={() => setCurrentView('admin')} 
+            className={`px-4 py-2 rounded text-sm ${currentView === 'admin' ? 'bg-pink-500 text-white' : 'bg-gray-200 text-gray-700'}`}
+          >
+            ·ÊÕ… «· Õﬂ„
+          </button>
+        </div>
+      </nav>
+
+      <main>
+        {currentView === 'chat' ? (
+          <div className="p-4 max-w-2xl mx-auto mt-6">
+            <ChatBox />
+          </div>
+        ) : (
+          <AdminDashboard 
+            users={users} 
+            reports={reports} 
+            onBanUser={handleBanUser} 
+            onDeleteReport={handleDeleteReport} 
+          />
+        )}
+      </main>
+    </div>
+  );
+}
+
