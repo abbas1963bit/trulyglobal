@@ -5,14 +5,14 @@ import { ChatBox } from './ChatBox';
 export default function App() {
   const [currentView, setCurrentView] = useState('chat');
   
-  // »Ì«‰«   Ã—Ì»Ì… „»œ∆Ì… ·«Œ »«— «·Ê«ÃÂ« 
+  // √à√≠√á√§√á√ä √ä√å√ë√≠√à√≠√â √£√à√è√Ü√≠√â √°√á√é√ä√à√á√ë √á√°√¶√á√å√•√á√ä
   const [users, setUsers] = useState([
-    { id: 1, name: '√Õ„œ ⁄·Ì', email: 'ahmed@example.com', avatar: 'https://via.placeholder.com/40', isBanned: false },
-    { id: 2, name: '”«—… „Õ„œ', email: 'sara@example.com', avatar: 'https://via.placeholder.com/40', isBanned: false }
+    { id: 1, name: '√É√ç√£√è √ö√°√≠', email: 'ahmed@example.com', avatar: 'https://via.placeholder.com/40', isBanned: false },
+    { id: 2, name: '√ì√á√ë√â √£√ç√£√è', email: 'sara@example.com', avatar: 'https://via.placeholder.com/40', isBanned: false }
   ]);
 
   const [reports, setReports] = useState([
-    { id: 1, reportedName: '”«—… „Õ„œ', reason: '”·Êﬂ €Ì— ·«∆ﬁ', reporterName: '√Õ„œ ⁄·Ì' }
+    { id: 1, reportedName: '√ì√á√ë√â √£√ç√£√è', reason: '√ì√°√¶√ü √õ√≠√ë √°√á√Ü√û', reporterName: '√É√ç√£√è √ö√°√≠' }
   ]);
 
   const handleBanUser = (userId) => {
@@ -26,19 +26,19 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gray-100 font-sans" dir="rtl">
       <nav className="bg-white shadow p-4 flex justify-between items-center">
-        <h1 className="font-bold text-lg text-gray-800">„‰’… «· Ê«’·</h1>
+        <h1 className="font-bold text-lg text-gray-800">√£√§√ï√â √á√°√ä√¶√á√ï√°</h1>
         <div className="flex gap-2">
           <button 
             onClick={() => setCurrentView('chat')} 
             className={`px-4 py-2 rounded text-sm ${currentView === 'chat' ? 'bg-pink-500 text-white' : 'bg-gray-200 text-gray-700'}`}
           >
-            «·„Õ«œÀ…
+            √á√°√£√ç√á√è√ã√â
           </button>
           <button 
             onClick={() => setCurrentView('admin')} 
             className={`px-4 py-2 rounded text-sm ${currentView === 'admin' ? 'bg-pink-500 text-white' : 'bg-gray-200 text-gray-700'}`}
           >
-            ·ÊÕ… «· Õﬂ„
+            √°√¶√ç√â √á√°√ä√ç√ü√£
           </button>
         </div>
       </nav>
